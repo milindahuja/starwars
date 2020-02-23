@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+	font-family: 'Numans', sans-serif;
+}
+body {
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+	font-family: 'Numans', sans-serif;
+}
+body.login {
+	background-image: url('../src/assets/star-wars-login-bg.jpg');
+}
+body.search {
+	background-image: url('../src/assets/star-wars-search-bg.jpg');
+}
+.invalid-feedback {
+	font-size: 100%;
+	color: #dc3545;
+	text-shadow: 0px -2px 4px #4b4b4b, 0px -2px 10px #ff7e33, 0px -10px 20px #ff5e00, 0px -20px 40px #C33;
+	span {
+		margin-right: 5px;
+	}
+}
