@@ -9,28 +9,36 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form (ngSubmit)="onLogin(username.value, password.value)">
+				<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Username" #username required autofocus>
-						
+						<input type="text" class="form-control" placeholder="Username" formControlName="username"
+							[ngClass]="{ 'is-invalid': submitted && f.username.errors }" autofocus>
+						<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+							<div *ngIf="f.username.errors.required">Username is required</div>
+						</div>
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password" #password required>
+						<input type="password" class="form-control" formControlName="password" placeholder="password"
+							[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+						<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+							<div *ngIf="f.password.errors.required">Password is required</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
-            </div>
-            <div class="card-footer" *ngIf="notStarWar">
-				<div class="d-flex justify-content-center invalid-feedback">
-                    <span><i class="fab fa-jedi-order"></i></span><p>Permission denied, You are not from Star Wars!</p>
+				<div class="card-footer" *ngIf="notStarWar">
+					<div class="d-flex justify-content-center invalid-feedback">
+						<span><i class="fab fa-jedi-order"></i></span>
+						<p>Permission denied, You are not from Star Wars!</p>
+					</div>
 				</div>
 			</div>
 		</div>

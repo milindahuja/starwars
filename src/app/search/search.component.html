@@ -1,26 +1,8 @@
-<!-- <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <h1>Search</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4 col-md-offset-3">
-        <form action="" class="search-form">
-            <div class="form-group has-feedback">
-                <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" name="search" id="search" placeholder="search"(keyup)="searchTerm$.next($event.target.value)">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            </div>
-        </form>
-        <ul  *ngFor="let result of results">
-            <li class="line" [ngStyle]="{ 'font-size' : fontSize} ">
-                {{ result.name }} {{result.population}} 
-            </li>
-        </ul>
-    </div>
-</div> -->
 <div class="container">
     <br />
+    <form class="float-right" (ngSubmit)="onLogout()">
+        <button type="submit" class="btn btn-primary btn-light">Logout</button>
+    </form>
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
             <form class="card card-sm">
@@ -30,15 +12,20 @@
                     </div>
                     <div class="col">
                         <input id="search" class="form-control form-control-lg form-control-borderless" type="text"
-                            (keyup)="searchPlanet$.next($event.target.value)" placeholder="Search Planets">
+                            autocomplete="off" (keyup)="searchPlanet$.next($event.target.value)"
+                            [disabled]="limitReached" placeholder="Search Planets">
                     </div>
                 </div>
             </form>
             <ul *ngFor="let result of results" class="list-group">
-                <li class="line list-group-item">
+                <li class="line list-group-item" [ngClass]="{ 'large-item' : result.population == largerPopulation}">
                     {{ result.name }} {{result.population}}
                 </li>
             </ul>
+            <div class="d-flex justify-content-center invalid-feedback" *ngIf="limitReached">
+                <span><i class="fab fa-jedi-order"></i></span>
+                <p>You are not Luke Skywalker. Your Search limit has been reached, please wait for some time!</p>
+            </div>
         </div>
     </div>
 </div>
