@@ -10,7 +10,6 @@ export class StarWarService {
 
   loginQueryUrl: string = 'people/?search=';
   searchQueryUrl: string = 'planets/?search=';
-  planetsQueryUrl: string = 'planets/'
 
   searchCount = [];
 
@@ -26,11 +25,4 @@ export class StarWarService {
     return this.http.get(environment.apiUrl + this.searchQueryUrl + planet)
   }
   
-  getAllPlanets() {
-    return this.http.get(environment.apiUrl + this.planetsQueryUrl)
-  }
-
-  getNext(nextUrl) {
-    return this.http.get(nextUrl);
-  } 
 }
